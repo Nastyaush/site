@@ -5,9 +5,12 @@ from django.shortcuts import render
 from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
 
+from application.models import Application
+
 
 def index(request):
-    return render(request, 'main/index.html')
+    applications = Application.objects.all()
+    return render(request, 'main/index.html', {'applications': applications})
 
 
 def other_page(request, page):

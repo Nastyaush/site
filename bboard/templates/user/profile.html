@@ -17,18 +17,25 @@
 <h3>Ваши заявки</h3>
 <a href="{% url 'application:create' %}">{% bootstrap_button "Создать новую заявку"%}</a>
 <div class="card-deck" style="margin-top: 10px">
-{%for applic in applications%}
+    {%for applic in applications%}
     <div class="card col-sm-4">
         <img class="card-img-top" src="{{ applic.image.url }}" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">{{applic.title}}</h5>
             <p class="card-text">{{applic.text}}</p>
-            <span class="card-text">{{applic.created_at}}</span>
+            <p class="card-text">Категория: {{applic.category}}</p>
+            <p class="card-text">Статус: {{applic.get_status_display}}</p>
+            <p class="card-text">{{applic.created_at}}</p>
             <a href="{%url 'application:delete' applic.id %}">
                 <button class="btn btn-danger">Удалить</button>
             </a>
+            {%if user.is_staff and applic.status == "new"%}
+              <a href="{%url 'application:change_status' applic.id %}">
+                <button class="btn btn-warning">Изменить статус</button>
+              </a>
+            {% endif %}
         </div>
     </div>
-{%endfor%}
+    {%endfor%}
 </div>
 {% endblock %}

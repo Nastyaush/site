@@ -1,0 +1,22 @@
+{% extends "layout/basic.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<h2>Категории</h2>
+
+{%if user.is_staff%}
+    <a href="{% url 'application:create_category' %}">{% bootstrap_button "Создать новую категорию"%}</a>
+{% endif %}
+{%for category in categories%}
+<div class="card" style="margin-top: 10px">
+    <div class="card-body">
+        <h5 class="card-title">{{category.name}}</h5>
+        {%if user.is_staff%}
+        <a href="{%url 'application:delete_category' category.id %}">
+            <button class="btn btn-danger">Удалить</button>
+        </a>
+        {% endif %}
+    </div>
+</div>
+{%endfor%}
+{% endblock %}

@@ -9,24 +9,20 @@
   <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='slim' %}
-  <title>{% block title %} Главная {% endblock %} - Электронная доска объявлений </title>
+  <title>{% block title %} Главная {% endblock %} - Электронная доска заявок </title>
 </head>
 <body>
 <div class="container-fluid">
   <div class="d-flex flex-column flex-md-row p-3 px-md-4 mb-3  bg-white border-bottom box-shadow">
-   <h5 class="mr-md-auto p-2">Электронная доска объявлений</h5>
+   <h5 class="mr-md-auto p-2">Электронная доска заявок</h5>
    {% if user.is_authenticated %}
    <div class="nav-item dropdown">
        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">Профиль</a>
        <div class="dropdown-menu">
-           <a class="dropdown-item" href="{% url 'user:profile' %}">Мои объявления</a>
-           <a class="dropdown-item" href="#">Изменить личные данные</a>
-           <a class="dropdown-item" href="#">Изменить пароль</a>
+           <a class="dropdown-item" href="{% url 'user:profile' %}">Мои заявки</a>
            <div class="dropdown-divider"></div>
            <a class="dropdown-item" href="{% url 'user:logout' %}">Выйти</a>
-           <div class="dropdown-divider"></div>
-           <a class="dropdown-item" href="#">Удалить</a>
        </div>
    </div>
    {% else %}
@@ -40,19 +36,7 @@
 
       <nav class="col-md-auto nav flex-column">
           <a class="nav-link root" href="{% url 'main:index'  %}">Главная</a>
-          <span class="nav-link root font-weight-bold">
-              Недвижимость
-          </span>
-          <a class="nav-link" href="#">Жилье</a>
-          <a class="nav-link" href="#">Скалады</a>
-          <a class="nav-link" href="#">Квартиры</a>
-
-          <span class="nav-link root font-weight-bold">
-              Транспорт
-          </span>
-          <a class="nav-link" href="#">Автомобили</a>
-          <a class="nav-link" href="#">Мото</a>
-          <a class="nav-link" href="#">Велосипеды</a>
+          <a class="nav-link" href="{% url 'application:index_category'  %}">Категории</a>
       </nav>
 
 
